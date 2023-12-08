@@ -10,7 +10,7 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TodosService } from './todos.service';
 import { TodoDto } from './dto/todo.dto';
-
+import { ChangeStatusDto } from './dto/changeStatus-dto';
 @ApiTags('任务')
 @Controller('todos')
 export class TodosController {
@@ -57,6 +57,16 @@ export class TodosController {
     return await this.todosService.updateTodoById(body);
   }
 
+  /**
+   * 修改任务状态
+   * @param body - 修改任务状态参数
+   * @memberof TodosController
+   */
+  @ApiOperation({ summary: '修改任务状态' })
+  @Put('/updateStatus')
+  async updateStatus(@Body() body: ChangeStatusDto) {
+    return await this.todosService.updateTodoStatusById(body);
+  }
   /**
    * 删除任务
    * @param id - 任务ID
