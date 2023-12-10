@@ -56,7 +56,7 @@ export class TodosController {
    * @param body - 更新任务参数
    */
   @ApiOperation({ summary: '更新任务' })
-  @Put('/update')
+  @Put('')
   async update(@Body() body: UpdateDto) {
     return await this.todosService.updateTodoById(body);
   }
@@ -67,7 +67,7 @@ export class TodosController {
    * @memberof TodosController
    */
   @ApiOperation({ summary: '修改任务状态' })
-  @Patch('/updateStatus')
+  @Patch('')
   async updateStatus(@Body() body: ChangeStatusDto) {
     return await this.todosService.updateTodoStatusById(body);
   }
@@ -77,7 +77,7 @@ export class TodosController {
    * @param id - 任务ID
    */
   @ApiOperation({ summary: '删除任务' })
-  @Delete('/delete/:id')
+  @Delete('/:id')
   async delete(@Param('id') id: number) {
     return await this.todosService.deleteTodoById(id);
   }
