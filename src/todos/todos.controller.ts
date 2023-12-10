@@ -4,13 +4,16 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Put,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TodosService } from './todos.service';
-import { TodoDto } from './dto/todo.dto';
+import { CreateDto } from './dto/create.dto';
+import { UpdateDto } from './dto/update.dto';
 import { ChangeStatusDto } from './dto/changeStatus-dto';
+
 @ApiTags('任务')
 @Controller('todos')
 export class TodosController {
@@ -36,6 +39,7 @@ export class TodosController {
   async getOne(@Param('id') id: number) {
     return await this.todosService.findOneById(id);
   }
+
   /**
    * 创建任务
    * @param body - 创建任务参数
@@ -43,7 +47,7 @@ export class TodosController {
    */
   @ApiOperation({ summary: '创建任务' })
   @Post()
-  async add(@Body() body: TodoDto) {
+  async add(@Body() body: CreateDto) {
     return await this.todosService.addTodo(body);
   }
 
@@ -53,7 +57,7 @@ export class TodosController {
    */
   @ApiOperation({ summary: '更新任务' })
   @Put('/update')
-  async update(@Body() body: TodoDto) {
+  async update(@Body() body: UpdateDto) {
     return await this.todosService.updateTodoById(body);
   }
 
@@ -63,10 +67,11 @@ export class TodosController {
    * @memberof TodosController
    */
   @ApiOperation({ summary: '修改任务状态' })
-  @Put('/updateStatus')
+  @Patch('/updateStatus')
   async updateStatus(@Body() body: ChangeStatusDto) {
     return await this.todosService.updateTodoStatusById(body);
   }
+
   /**
    * 删除任务
    * @param id - 任务ID
