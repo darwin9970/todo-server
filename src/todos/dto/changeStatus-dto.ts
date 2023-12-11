@@ -5,6 +5,6 @@ export class ChangeStatusDto {
   @ApiProperty({ description: '任务ID' })
   readonly id: number;
 
-  @ApiProperty({ description: '任务状态' })
+  @ApiProperty({ description: '任务状态 0: 待办 1: 完成' })
   readonly status: 0 | 1; // 0: 待办 1: 完成
 }

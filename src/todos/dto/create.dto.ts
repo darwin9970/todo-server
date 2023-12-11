@@ -11,6 +11,6 @@ export class CreateDto {
   @ApiProperty({ description: '任务详细描述' })
   readonly description: string;
 
-  @ApiProperty({ description: '任务状态' })
+  @ApiProperty({ description: '任务状态 0: 待办 1: 完成' })
   readonly status?: 0 | 1 | 2; // 0: 待办 1: 完成 2: 删除
 }
